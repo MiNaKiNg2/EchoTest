@@ -1,0 +1,34 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Tajawal';
+}
+
+body {
+    background-color: #F1F6F4
+}
+
+.bg-light {
+    background-color: #DFF1F0 !important;
+}
+
+.nav-item {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.nav-item a:hover {
+    color: #FFB433 !important;
+}
+
+@media (max-width: 790px) {
+    .sginup-box {
+        width: 100% !important;
+        margin-top: 200px !important;
+    }
+}
+
+button:hover {
+    background-color: #efa729 !important;
+    color: #fff !important;
+}
