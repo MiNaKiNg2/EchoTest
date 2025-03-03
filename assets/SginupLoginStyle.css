@@ -24,11 +24,17 @@ body {
 @media (max-width: 790px) {
     .sginup-box {
         width: 100% !important;
-        margin-top: 300px !important;
+        margin-top: 350px !important;
     }
 }
 
 button:hover {
     background-color: #efa729 !important;
     color: #fff !important;
+}
+
+.sginup-box {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    overflow: hidden;
 }

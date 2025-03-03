@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post - Echo</title>
+
+    <!-- Bootstrap & Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body style="background-color: #F1F6F4;">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    <h3 class="text-center mb-3">Create a New Post</h3>
+
+                    <form>
+                        <!-- حقل كتابة البوست -->
+                        <div class="mb-3">
+                            <textarea class="form-control" id="postContent" rows="3" placeholder="What's on your mind?"></textarea>
+                        </div>
+
+                        <!-- زر رفع الصورة -->
+                        <div class="mb-3">
+                            <label class="form-label">Upload Image (optional)</label>
+                            <input type="file" class="form-control" id="imageUpload" accept="image/*">
+                            <button id="removeImage" class="btn btn-danger d-none">
+                                <i class="fa-solid fa-xmark"></i> Remove Image
+                            </button>
+                        </div>
+
+                        <!-- عرض معاينة للصورة -->
+                        <div class="mb-3 text-center">
+                            <img id="imagePreview" class="img-fluid rounded d-none" style="max-height: 250px;">
+                        </div>
+
+                        <!-- زر إضافة البوست -->
+                        <button type="submit" class="btn w-100" id="addPostButton" style="background-color: #FFB433; color: #000;">
+                            <i class="fa fa-plus"></i> Add Post
+                        </button>
+                        <script src="assets/profile.js"></script>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

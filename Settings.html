@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | Echo</title>
+
+    <!-- Bootstrap & FontAwesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        function toggleEdit() {
+            let fields = document.querySelectorAll(".editable");
+            fields.forEach(field => field.disabled = !field.disabled);
+        }
+
+        function confirmChanges() {
+            let currentPass = document.getElementById("currentPassword").value;
+            if (currentPass.trim() === "") {
+                alert("Please enter your current password to save changes.");
+                return false;
+            }
+            return confirm("Are you sure you want to save the changes?");
+        }
+
+        function confirmDeletion() {
+            let confirmDelete = confirm("⚠️ This action is irreversible! Are you sure you want to delete your account?");
+            if (confirmDelete) {
+                let password = prompt("Enter your password to confirm deletion:");
+                if (!password || password.trim() === "") {
+                    alert("Password is required to delete the account.");
+                    return false;
+                }
+            }
+            return confirmDelete;
+        }
+
+        function previewImage(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profilePreview").src = e.target.result;
+                    document.getElementById("profilePreview").classList.remove("d-none");
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fa fa-cog"></i> Account Settings</h2>
+
+        <button class="btn btn-warning mb-3" onclick="toggleEdit()">
+            <i class="fa fa-edit"></i> Edit Settings
+        </button>
+
+        <form onsubmit="return confirmChanges()">
+            <!-- الاسم -->
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control editable" placeholder="Enter your full name" disabled>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control editable" placeholder="Enter your Username" disabled>
+            </div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control editable" placeholder="Enter your email" disabled>
+            </div>
+
+            <!-- رقم الهاتف -->
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control editable" placeholder="Enter your phone number" disabled>
+            </div>
+
+            <!-- الجنس -->
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="form-control editable" disabled>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <!-- الصورة الشخصية -->
+            <div class="mb-3">
+                <label class="form-label">Profile Image</label>
+                <input type="file" class="form-control editable" id="profileImage" accept="image/*" disabled onchange="previewImage(event)">
+                <img id="profilePreview" src="default-avatar.png" class="mt-2 d-none" width="100" height="100" alt="Profile Image">
+            </div>
+
+            <!-- تغيير كلمة المرور -->
+            <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-control editable" placeholder="Enter new password" disabled>
+            </div>
+
+            <!-- كلمة المرور الحالية للتأكيد -->
+            <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <input type="password" id="currentPassword" class="form-control" placeholder="Enter current password">
+            </div>
+
+            <!-- إعدادات الخصوصية -->
+            <div class="mb-3">
+                <label class="form-label">Privacy Settings</label>
+                <select class="form-control editable" disabled>
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+
+            <!-- إشعارات -->
+            <div class="form-check mb-3">
+                <input class="form-check-input editable" type="checkbox" id="notifications" disabled>
+                <label class="form-check-label" for="notifications">Enable Notifications</label>
+            </div>
+
+            <!-- زر الحفظ -->
+            <button type="submit" class="btn btn-primary w-100"><i class="fa fa-save"></i> Save Changes</button>
+        </form>
+
+        <!-- زر حذف الحساب -->
+        <button type="button" class="btn btn-danger w-100 mt-2 mb-3" id="deleteAccountBtn" onclick="return confirmDeletion()">
+            <i class="fa fa-trash"></i> Delete Account
+        </button>
+    </div>
+
+</body>
+
+</html>
